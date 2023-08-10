@@ -40,7 +40,7 @@ $(function () {
 
 
 
-  var saveButton = document.querySelector(".saveBtn");
+  var saveButton = document.querySelectorAll(".saveBtn");
   var userInput = document.querySelector(".description");
   var hourNine = document.getElementById("hour-9");
   var hourTen = document.getElementById("hour-10").textarea;
@@ -54,14 +54,15 @@ $(function () {
   // var timeBlock = document.querySelectorAll(".time-block")
   // var toDoNow = hour.id
 
-  // saveLocalInput();
-  
+  saveLocalInput();
+
+ 
 
   function saveLocalInput() {
-
+  
     //local storge key name for each hour
     hourNine.textContent = localStorage.getItem("hourNine");
-    hourTen = localStorage.getItem("hourTen");
+    hourTen.textContent = localStorage.getItem("hourTen");
     hourEleven.textContent = localStorage.getItem("hourEleven");
     hourTwelve.textContent = localStorage.getItem("hourTwelve");
     hourThirteen.textContent = localStorage.getItem("hourThirteen");
@@ -72,18 +73,23 @@ $(function () {
 
   };
 
-  saveButton.addEventListener("click", function (event) {
-    event.preventDefault();
-console.log("test")
-    var nine = document.getElementById("hour-9").value;
-    var ten = document.getElementById("hour-10").textarea;
-    var eleven = document.getElementById("hour-11").textarea;
-    var twelve = document.getElementById("hour-12").textarea;
-    var thirteen = document.getElementById("hour-13").textarea;
-    var fourteen = document.getElementById("hour-14").textarea;
-    var fifteen = document.getElementById("hour-15").textarea;
-    var sixteen = document.getElementById("hour-16").textarea;
-    var seventeen = document.getElementById("hour-17").textarea;
+  for (let i = 0; i < saveButton.length; i++) {
+    saveButton[i].addEventListener('click', saveLocal);
+  }
+  
+  function saveLocal(){
+  // saveButton.addEventListener("click", function (event) {
+  //   event.preventDefault();
+
+    var nine = document.getElementById("nine").value;
+    var ten = document.getElementById("ten").value;
+    var eleven = document.getElementById("eleven").value;
+    var twelve = document.getElementById("twelve").value;
+    var thirteen = document.getElementById("thirteen").value;
+    var fourteen = document.getElementById("fourteeen").value;
+    var fifteen = document.getElementById("fifteen").value;
+    var sixteen = document.getElementById("sixteen").value;
+    var seventeen = document.getElementById("seventeen").value;
 
 
     localStorage.setItem("hourNine", nine);
@@ -95,8 +101,10 @@ console.log("test")
     localStorage.setItem("hourFifteen", fifteen);
     localStorage.setItem("hourSixteen", sixteen);
     localStorage.setItem("hourSeventeen", seventeen);
-    saveLocalInput();
-  })
+    saveLocal();
+  }
+
+  
 
 });
 
